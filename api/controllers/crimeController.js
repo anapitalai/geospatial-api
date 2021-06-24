@@ -8,9 +8,8 @@ const geo_insert =
   "INSERT INTO public(latitude, longitude) VALUES ($1,$2)";
 
 //const geo_update = "UPDATE public SET geom = ST_POINT($1,$2)";
-const geo_update = "UPDATE public SET geom =ST_SetSRID(ST_POINT($1,$2),4326)";
+const geo_update = "UPDATE public SET geom =ST_SetSRID(ST_Point($2,$1),4326) where gid IN(select max(gid) from public)";
 
-//ST_SetSRID(ST_Point(-123.365556, 48.428611),4326)
 
 const get_all_crimes = (req, res) => {
   pool.query(crimes_query, (error, results) => {
@@ -29,9 +28,9 @@ const create_crime = (request, response) => {
       if (error) {
         throw error;
       }
-      // pool.query(
-      //    geo_update,
-      //    [latitude, longitude]);
+      pool.query(
+         geo_update,
+         [latitude, longitude]);
       response.status(201).send(`Point added with ID: ${results.insertId}`);
       
     }

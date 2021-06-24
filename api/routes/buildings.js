@@ -9,6 +9,7 @@ const buildingController = require('../controllers/buildingController');
 
 //get all alumni routes
 router.get("/",buildingController.get_all_buildings);
+router.post("/",buildingController.create_new_building);
 
 
  

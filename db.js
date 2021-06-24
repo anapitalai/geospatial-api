@@ -6,11 +6,11 @@ const pool=new Pool({
     // database:'unicrime',
     // host:'XXXX',
     // port:'5432'
-    // user:'postgres',
-    // password:'postgres',
-    // database:'unicrime',
-    // host:'XXX',
-    // port:'5432'
+    user:'postgres',
+    password:'',
+    database:'unicrime',
+    host:'',
+    port:'5432'
 })
 
 module.exports = pool;
